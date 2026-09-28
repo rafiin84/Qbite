@@ -3,7 +3,7 @@
 import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, CheckCircle, MapPin, Confetti } from "@phosphor-icons/react/dist/ssr";
+import { ArrowLeft, CheckCircle, Confetti } from "@phosphor-icons/react/dist/ssr";
 import { useOrder } from "@/features/orders/hooks";
 import { useCanteen } from "@/features/menu/hooks";
 import { orderStatusConfig } from "@/features/orders/status";
@@ -13,6 +13,7 @@ import { OrderTimeline } from "@/components/orders/order-timeline";
 import { QueueInfo } from "@/components/orders/queue-info";
 import { PickupTime } from "@/components/orders/pickup-time";
 import { OrderSummary } from "@/components/orders/order-summary";
+import { CollectionMap } from "@/components/orders/collection-map";
 import { TrackingSkeleton } from "@/components/feedback/loading-state";
 import { ErrorState } from "@/components/feedback/error-state";
 
@@ -119,11 +120,11 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ orderI
       </div>
 
       {canteenQuery.data ? (
-        <div className="flex items-center gap-2.5 rounded-2xl bg-muted/70 px-4 py-3.5 text-sm text-muted-foreground">
-          <MapPin className="size-4 shrink-0" aria-hidden />
-          Collect from <span className="font-medium text-foreground">{canteenQuery.data.canteen.name}</span>,{" "}
-          {canteenQuery.data.canteen.location}
-        </div>
+        <CollectionMap
+          canteenName={canteenQuery.data.canteen.name}
+          location={canteenQuery.data.canteen.location}
+          coordinates={canteenQuery.data.canteen.mapCoordinates}
+        />
       ) : null}
 
       <div className="rounded-3xl border border-border bg-card px-5 py-5">

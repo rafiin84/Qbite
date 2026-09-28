@@ -18,4 +18,5 @@ export const canteen: Canteen = {
   averagePreparationMinutes: 4,
   preparationBufferMinutes: 3,
   location: "Block A, Ground Floor",
+  mapCoordinates: { lat: 11.0244, lng: 76.9436 },
 };

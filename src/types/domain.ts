@@ -57,6 +57,7 @@ export interface Canteen {
   averagePreparationMinutes: number;
   preparationBufferMinutes: number;
   location: string;
+  mapCoordinates: { lat: number; lng: number };
 }
 
 export interface MenuCategory {
