@@ -111,9 +111,9 @@ export default function FoodDetailsPage({ params }: { params: Promise<{ itemId: 
       </div>
 
       {item.available && (
-        <div className="sticky bottom-[calc(5rem+env(safe-area-inset-bottom))] mt-2 flex items-center justify-between gap-3 rounded-3xl border border-border bg-card/95 p-3 shadow-lg backdrop-blur-sm md:bottom-4">
+        <div className="sticky bottom-[calc(5rem+env(safe-area-inset-bottom))] mt-2 flex items-center justify-between gap-3 rounded-3xl border border-border bg-card/95 p-3 shadow-lg backdrop-blur-sm sm:max-w-sm md:bottom-4">
           <QuantitySelector quantity={quantity} onIncrement={() => setQuantity((q) => q + 1)} onDecrement={() => setQuantity((q) => Math.max(1, q - 1))} />
-          <Button onClick={handleAddToCart} className="h-11 flex-1 gap-1.5">
+          <Button onClick={handleAddToCart} className="h-11 gap-1.5 px-5">
             Add to Cart · {formatCurrency(item.price * quantity)}
           </Button>
         </div>
