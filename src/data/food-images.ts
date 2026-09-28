@@ -1,0 +1,69 @@
+/**
+ * Hotlinked food photography (Unsplash / Pexels), keyed by menu item id.
+ * Every URL below was fetched and verified to resolve with HTTP 200.
+ */
+export const foodImages: Record<string, string> = {
+  "item-masala-dosa":
+    "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=800&auto=format&fit=crop",
+  "item-idli-sambar":
+    "https://images.unsplash.com/photo-1741376509047-66dae5df90f9?q=80&w=800&auto=format&fit=crop",
+  "item-samosa":
+    "https://images.pexels.com/photos/21078315/pexels-photo-21078315.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-veg-sandwich":
+    "https://images.pexels.com/photos/1988624/pexels-photo-1988624.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-chicken-sandwich":
+    "https://images.pexels.com/photos/17486821/pexels-photo-17486821.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-paneer-roll":
+    "https://images.pexels.com/photos/29173104/pexels-photo-29173104.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-lemon-rice":
+    "https://images.pexels.com/photos/4595316/pexels-photo-4595316.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-veg-fried-rice":
+    "https://images.pexels.com/photos/17910326/pexels-photo-17910326.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-chicken-fried-rice":
+    "https://images.pexels.com/photos/6249394/pexels-photo-6249394.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-chai":
+    "https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-filter-coffee":
+    "https://images.pexels.com/photos/16128085/pexels-photo-16128085.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-lime-soda":
+    "https://images.pexels.com/photos/6541793/pexels-photo-6541793.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-cold-coffee":
+    "https://images.pexels.com/photos/17576001/pexels-photo-17576001.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-brownie":
+    "https://images.pexels.com/photos/5386663/pexels-photo-5386663.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-gulab-jamun":
+    "https://images.pexels.com/photos/11887844/pexels-photo-11887844.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-onion-pakora":
+    "https://images.pexels.com/photos/29547418/pexels-photo-29547418.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-bread-pakora":
+    "https://images.pexels.com/photos/14827666/pexels-photo-14827666.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-aloo-tikki":
+    "https://images.unsplash.com/photo-1788621509034-6d6ba6f57a0f?q=80&w=800&auto=format&fit=crop",
+  "item-corn-chaat":
+    "https://images.pexels.com/photos/38960838/pexels-photo-38960838.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-veg-biryani":
+    "https://images.unsplash.com/photo-1752673508949-f4aeeaef75f0?q=80&w=800&auto=format&fit=crop",
+  "item-chicken-biryani":
+    "https://images.unsplash.com/photo-1559528896-c5310744cce8?q=80&w=800&auto=format&fit=crop",
+  "item-curd-rice":
+    "https://images.pexels.com/photos/35175194/pexels-photo-35175194.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-chapati-sabzi":
+    "https://images.pexels.com/photos/28579050/pexels-photo-28579050.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-uthappam":
+    "https://images.pexels.com/photos/17869140/pexels-photo-17869140.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-buttermilk":
+    "https://images.pexels.com/photos/8489749/pexels-photo-8489749.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-badam-milk":
+    "https://images.pexels.com/photos/38260645/pexels-photo-38260645.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-nannari":
+    "https://images.pexels.com/photos/32753958/pexels-photo-32753958.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-rava-kesari":
+    "https://images.pexels.com/photos/39572208/pexels-photo-39572208.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-fruit-custard":
+    "https://images.pexels.com/photos/14090812/pexels-photo-14090812.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "item-choco-muffin":
+    "https://images.pexels.com/photos/131899/pexels-photo-131899.jpeg?auto=compress&cs=tinysrgb&w=800",
+};
+
+export const fallbackFoodImage =
+  "https://images.pexels.com/photos/1487511/pexels-photo-1487511.jpeg?auto=compress&cs=tinysrgb&w=800";
