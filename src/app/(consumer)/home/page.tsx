@@ -88,40 +88,42 @@ export default function HomePage() {
         </div>
       ) : null}
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, delay: 0.05 }}
-      >
+      <div className="flex flex-col gap-3 sm:max-w-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.05 }}
+        >
+          <Link
+            href="/menu"
+            className="group flex items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-4 text-primary-foreground transition-transform active:scale-[0.99]"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-2xl bg-white/15">
+                <Storefront weight="fill" className="size-5" aria-hidden />
+              </span>
+              <div className="flex flex-col">
+                <span className="font-heading text-sm font-semibold">Browse the menu</span>
+                <span className="text-xs text-primary-foreground/80">Snacks, meals, beverages &amp; more</span>
+              </div>
+            </div>
+            <CaretRight className="size-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
+          </Link>
+        </motion.div>
+
         <Link
-          href="/menu"
-          className="group flex items-center justify-between gap-4 rounded-3xl bg-primary px-5 py-5 text-primary-foreground transition-transform active:scale-[0.99]"
+          href="/orders"
+          className="flex items-center justify-between gap-4 rounded-3xl border border-border bg-card px-5 py-3.5 transition-colors hover:bg-accent/40"
         >
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-2xl bg-white/15">
-              <Storefront weight="fill" className="size-5" aria-hidden />
+            <span className="flex size-9 items-center justify-center rounded-2xl bg-muted">
+              <ClipboardText weight="bold" className="size-4 text-muted-foreground" aria-hidden />
             </span>
-            <div className="flex flex-col">
-              <span className="font-heading text-base font-semibold">Browse the menu</span>
-              <span className="text-sm text-primary-foreground/80">Snacks, meals, beverages &amp; more</span>
-            </div>
+            <span className="font-heading text-sm font-semibold text-foreground">Order history</span>
           </div>
-          <CaretRight className="size-5 transition-transform group-hover:translate-x-1" aria-hidden />
+          <CaretRight className="size-4 shrink-0 text-muted-foreground" aria-hidden />
         </Link>
-      </motion.div>
-
-      <Link
-        href="/orders"
-        className="flex items-center justify-between gap-4 rounded-3xl border border-border bg-card px-5 py-4 transition-colors hover:bg-accent/40"
-      >
-        <div className="flex items-center gap-3">
-          <span className="flex size-10 items-center justify-center rounded-2xl bg-muted">
-            <ClipboardText weight="bold" className="size-5 text-muted-foreground" aria-hidden />
-          </span>
-          <span className="font-heading text-sm font-semibold text-foreground">Order history</span>
-        </div>
-        <CaretRight className="size-4 text-muted-foreground" aria-hidden />
-      </Link>
+      </div>
     </div>
   );
 }
