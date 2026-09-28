@@ -1,26 +1,54 @@
 "use client";
 
 import Link from "next/link";
+import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { CaretRight, MapPin, Storefront, ClipboardText } from "@phosphor-icons/react/dist/ssr";
+import {
+  CaretRight,
+  MapPin,
+  Storefront,
+  ClipboardText,
+  Clock,
+  CalendarBlank,
+} from "@phosphor-icons/react/dist/ssr";
+import type { MenuItem } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSessionStore } from "@/store/session-store";
-import { useCanteen } from "@/features/menu/hooks";
-import { useActiveOrder } from "@/features/orders/hooks";
+import { useCanteen, useMenu } from "@/features/menu/hooks";
+import { useActiveOrder, useOrders } from "@/features/orders/hooks";
+import { useCartStore } from "@/store/cart-store";
 import { timeOfDayGreeting } from "@/lib/utils/greeting";
 import { formatTime } from "@/lib/utils/format";
 import { ActiveOrderCard } from "@/components/orders/active-order-card";
+import { OrderCard } from "@/components/orders/order-card";
+import { FoodCard } from "@/components/food/food-card";
 import { ErrorState } from "@/components/feedback/error-state";
 
 export default function HomePage() {
   const consumer = useSessionStore((s) => s.consumer);
   const canteenQuery = useCanteen();
   const activeOrderQuery = useActiveOrder(consumer?.id);
+  const menuQuery = useMenu();
+  const ordersQuery = useOrders(consumer?.id);
+  const addItem = useCartStore((s) => s.addItem);
 
   const firstName = consumer?.name.split(" ")[0] ?? "there";
   const canteen = canteenQuery.data?.canteen;
   const isOpen = canteen?.status === "open";
+
+  const popularItems = (menuQuery.data?.items ?? [])
+    .filter((item) => item.isPopular && item.available)
+    .slice(0, 4);
+
+  const recentOrders = (ordersQuery.data ?? [])
+    .filter((order) => order.id !== activeOrderQuery.data?.id)
+    .slice(0, 2);
+
+  function handleQuickAdd(item: MenuItem) {
+    addItem(item.id, 1);
+    toast.success(`Added ${item.name}`, { description: "1 item added to your cart." });
+  }
 
   return (
     <div className="flex flex-col gap-6 pb-6">
@@ -67,6 +95,21 @@ export default function HomePage() {
           </p>
         ) : null}
       </motion.div>
+
+      {canteen ? (
+        <div className="flex flex-wrap gap-2.5">
+          <div className="flex items-center gap-2 rounded-2xl bg-muted/70 px-3.5 py-2 text-xs text-muted-foreground">
+            <Clock className="size-3.5 shrink-0" aria-hidden />
+            Open {formatTime(`1970-01-01T${canteen.operatingHours.opensAt}:00`)} –{" "}
+            {formatTime(`1970-01-01T${canteen.operatingHours.closesAt}:00`)}
+          </div>
+          <div className="flex items-center gap-2 rounded-2xl bg-muted/70 px-3.5 py-2 text-xs text-muted-foreground">
+            <CalendarBlank className="size-3.5 shrink-0" aria-hidden />
+            Pre-orders {formatTime(`1970-01-01T${canteen.pickupWindow.startsAt}:00`)} –{" "}
+            {formatTime(`1970-01-01T${canteen.pickupWindow.endsAt}:00`)}
+          </div>
+        </div>
+      ) : null}
 
       {consumer && (activeOrderQuery.isLoading ? (
         <Skeleton className="h-40 w-full rounded-3xl" />
@@ -124,6 +167,40 @@ export default function HomePage() {
           <CaretRight className="size-4 shrink-0 text-muted-foreground" aria-hidden />
         </Link>
       </div>
+
+      {popularItems.length > 0 ? (
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <h2 className="font-heading text-base font-semibold text-foreground">Popular right now</h2>
+            <Link href="/menu" className="text-xs font-medium text-muted-foreground hover:text-foreground">
+              See all
+            </Link>
+          </div>
+          <div className="flex gap-3 overflow-x-auto pb-1 no-scrollbar">
+            {popularItems.map((item, index) => (
+              <div key={item.id} className="w-40 shrink-0 sm:w-44">
+                <FoodCard item={item} index={index} onQuickAdd={handleQuickAdd} />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {recentOrders.length > 0 ? (
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <h2 className="font-heading text-base font-semibold text-foreground">Recent orders</h2>
+            <Link href="/orders" className="text-xs font-medium text-muted-foreground hover:text-foreground">
+              See all
+            </Link>
+          </div>
+          <div className="flex flex-col gap-2.5">
+            {recentOrders.map((order) => (
+              <OrderCard key={order.id} order={order} />
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
